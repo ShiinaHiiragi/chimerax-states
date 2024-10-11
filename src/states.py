@@ -13,9 +13,9 @@ EXCEEDED = "«EXCEEDED»"
 BASIC_TYPE = (int, float, bool, str, type(None))
 
 ids = set()
-to_key = lambda key: key \
-    if isinstance(key, str) \
-    else re.sub(r" at 0x[0-9A-F]{16}", "", str(to_key))
+# to_key = lambda key: key \
+#     if isinstance(key, str) \
+#     else re.sub(r" at 0x[0-9A-F]{16}", "", str(key))
 
 def cruise(obj: Any, depth=0):
     global ids
@@ -35,16 +35,16 @@ def cruise(obj: Any, depth=0):
         return obj
     elif type(obj) in (dict,):
         return {
-            to_key(key): cruise(obj[key], depth + 1)
+            str(key): cruise(obj[key], depth + 1)
             for key in obj
         }
     elif type(obj) in (tuple, list, set):
         return [cruise(item, depth + 1) for item in obj]
     elif hasattr(obj, "__dict__"):
         return {
-            to_key(key): cruise(obj.__dict__[key], depth + 1)
+            str(key): cruise(obj.__dict__[key], depth + 1)
             for key in obj.__dict__
-            if key not in ("__objclass__",)
+            if key not in ("__objclass__", "undo")
         }
     else:
         return str(obj)
