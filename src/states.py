@@ -10,6 +10,7 @@ from chimerax.core.commands import StringArg
 MAX_DEPTH = 24
 DUPLICATED = "«DUPLICATED»"
 EXCEEDED = "«EXCEEDED»"
+BASIC_TYPE = (int, float, bool, str, type(None))
 
 ids = set()
 to_key = lambda key: key \
@@ -20,16 +21,17 @@ def cruise(obj: Any, depth=0):
     global ids
     if depth == 0:
         ids.clear()
-    obj_id = id(obj)
-    if obj_id in ids:
-        return DUPLICATED
-    else:
-        ids.add(obj_id)
+    if not type(obj) in BASIC_TYPE:
+        obj_id = id(obj)
+        if obj_id in ids:
+            return DUPLICATED
+        else:
+            ids.add(obj_id)
 
     if depth >= MAX_DEPTH:
         return EXCEEDED
 
-    if type(obj) in (int, float, bool, str, type(None)):
+    if type(obj) in BASIC_TYPE:
         return obj
     elif type(obj) in (dict,):
         return {
@@ -49,7 +51,7 @@ def cruise(obj: Any, depth=0):
 
 def flatten(obj: dict, prefix=""):
     result = {}
-    if type(obj) in (int, float, bool, str, type(None)):
+    if type(obj) in BASIC_TYPE:
         result[prefix[:-1]] = obj
     elif isinstance(obj, dict):
         for key in obj:
