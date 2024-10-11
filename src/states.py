@@ -1,8 +1,9 @@
 import os
-import re
+import sys
 import json
 
 from typing import Any
+from numpy import ndarray, set_printoptions
 from chimerax.core.commands import CmdDesc
 from chimerax.core.commands import StringArg
 
@@ -33,7 +34,9 @@ def cruise(obj: Any, depth=0):
 
     if type(obj) in BASIC_TYPE:
         return obj
-    elif type(obj) in (dict,):
+    elif isinstance(obj, ndarray):
+        return str(obj).replace("\n", "")
+    elif isinstance(obj, dict):
         return {
             str(key): cruise(obj[key], depth + 1)
             for key in obj
@@ -45,7 +48,7 @@ def cruise(obj: Any, depth=0):
         return {
             str(key): cruise(obj.__dict__[key], depth + 1)
             for key in obj.__dict__
-            if key not in ("__objclass__",)
+            if key not in ("__objclass__", "undo")
         }
     else:
         return str(obj)
@@ -75,6 +78,7 @@ def output(file_path, obj):
         json.dump(obj, writable, indent=2, ensure_ascii=False)
 
 def states(session, filename="output"):
+    set_printoptions(threshold=sys.maxsize)
     cruised = cruise(session)
     output(f"~/Downloads/{filename}.raw.json", cruised)
 
