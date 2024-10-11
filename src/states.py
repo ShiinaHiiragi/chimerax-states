@@ -54,7 +54,7 @@ def flatten(obj: dict, prefix=""):
     elif isinstance(obj, dict):
         for key in obj:
             result.update(flatten(obj[key], prefix + key + "."))
-    elif hasattr(obj, "__iter__"):
+    elif isinstance(obj, list):
         for index, item in enumerate(obj):
             result.update(flatten(item, prefix + "#" + str(index) + "."))
     return {
@@ -63,19 +63,20 @@ def flatten(obj: dict, prefix=""):
         if result[key] != DUPLICATED
     }
 
-def states(session, filename="output"):
-    target_path = f"~/Downloads/{filename}.json"
+def output(file_path, obj):
     with open(
-        os.path.expanduser(target_path),
+        os.path.expanduser(file_path),
         mode="w",
         encoding="utf-8"
     ) as writable:
-        json.dump(
-            flatten(cruise(session)),
-            writable,
-            indent=2,
-            ensure_ascii=False
-        )
+        json.dump(obj, writable, indent=2, ensure_ascii=False)
+
+def states(session, filename="output"):
+    cruised = cruise(session)
+    output(f"~/Downloads/{filename}.raw.json", cruised)
+
+    flattened = flatten(cruised)
+    output(f"~/Downloads/{filename}.json", flattened)
 
 states_desc = CmdDesc(
     required=[("filename", StringArg)],
