@@ -37,6 +37,7 @@ def cruise(obj: Any, depth=0):
         return {
             str(key): cruise(obj[key], depth + 1)
             for key in obj
+            if key not in ("undo",)
         }
     elif type(obj) in (tuple, list, set):
         return [cruise(item, depth + 1) for item in obj]
@@ -44,7 +45,7 @@ def cruise(obj: Any, depth=0):
         return {
             str(key): cruise(obj.__dict__[key], depth + 1)
             for key in obj.__dict__
-            if key not in ("__objclass__", "undo")
+            if key not in ("__objclass__",)
         }
     else:
         return str(obj)
