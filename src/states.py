@@ -1,4 +1,6 @@
+import os
 import re
+import json
 
 from typing import Any
 from chimerax.core.commands import CmdDesc
@@ -62,12 +64,12 @@ def flatten(obj: dict, prefix=""):
     }
 
 def states(session, filename="output"):
+    target_path = f"~/Downloads/{filename}.json"
     with open(
-        f"C:/Users/Ichinoe/Repository/dos/snippet/{filename}.json",
+        os.path.expanduser(target_path),
         mode="w",
         encoding="utf-8"
     ) as writable:
-        import json
         json.dump(
             flatten(cruise(session)),
             writable,
