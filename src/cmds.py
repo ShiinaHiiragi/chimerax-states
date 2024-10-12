@@ -96,8 +96,15 @@ states_desc = CmdDesc(
 )
 
 def destroy(session):
-    import pprint
-    session.logger.info(pprint.pformat(session.ui.main_window.__dict__))
+    from chimerax.cmd_line.tool import CommandLine
+    from chimerax.core.commands import run
+    tool_instances = session.ui.main_window.tool_instance_to_windows
+    cli_object = [
+        key for key in tool_instances
+        if isinstance(key, CommandLine)
+    ][0]
+    cli_object.text.lineEdit().returnPressed.disconnect()
+    run(session, "tool hide command")
 
 destroy_desc = CmdDesc(
     synopsis="Disable command line interface"
