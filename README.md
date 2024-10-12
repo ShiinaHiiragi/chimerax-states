@@ -4,7 +4,7 @@
 
 Reveal inner states of ChimeraX.
 
-## Usage
+## Installation
 
 1. Downloads specific version (e.g. v0.2.0) from GitHub:
 
@@ -14,9 +14,10 @@ Reveal inner states of ChimeraX.
     chimerax --nogui --exit --cmd "devel install ~/Downloads/chimerax-states-0.2.0 exit true"
     ```
 
-2. If some different version is installed, uninstall it first (the following are NOT shell commands):
+2. If updation is needed, uninstall it first:
 
     ```
+    # NOTE: these are NOT Linux shell commands
     toolshed uninstall SessionStates
     devel clean ~/Downloads/chimerax-states-0.2.0
     devel install ~/Downloads/chimerax-states-0.2.0
