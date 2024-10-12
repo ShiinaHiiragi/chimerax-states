@@ -1,9 +1,9 @@
 # ChimeraX-SessionStates
 
-## Introduction
+## Usage
 
-- `states`: reveal inner states of ChimeraX.
-- `destroy`: disable command line interface
+- `states <dir_path> <filename>`: reveal inner states of ChimeraX
+- `destroy`: hide and disable command line interface tool
 
 ## Installation
 
