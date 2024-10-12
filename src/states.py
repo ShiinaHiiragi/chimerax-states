@@ -77,15 +77,20 @@ def output(file_path, obj):
     ) as writable:
         json.dump(obj, writable, indent=2, ensure_ascii=False)
 
-def states(session, filename="output"):
+def states(session, dir_path="~", filename="output"):
     set_printoptions(threshold=sys.maxsize)
+    file_path_noext = os.path.join(dir_path, filename)
+
     cruised = cruise(session)
-    output(f"~/Downloads/{filename}.raw.json", cruised)
+    output(f"{file_path_noext}.raw.json", cruised)
 
     flattened = flatten(cruised)
-    output(f"~/Downloads/{filename}.json", flattened)
+    output(f"{file_path_noext}.json", flattened)
 
 states_desc = CmdDesc(
-    required=[("filename", StringArg)],
+    required=[
+        ("dir_path", StringArg),
+        ("filename", StringArg)
+    ],
     synopsis="List all states of session"
 )
