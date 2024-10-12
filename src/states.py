@@ -87,5 +87,5 @@ def states(session, filename="output"):
 
 states_desc = CmdDesc(
     required=[("filename", StringArg)],
-    synopsis="..."
+    synopsis="List all states of session"
 )

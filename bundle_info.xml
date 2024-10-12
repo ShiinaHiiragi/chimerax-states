@@ -1,17 +1,18 @@
 <BundleInfo
   name="ChimeraX-SessionStates"
-  version="0.1"
+  version="0.2.0"
   package="chimerax.session_states"
   minSessionVersion="1"
   maxSessionVersion="1"
 >
   <Author>Ichinoe</Author>
   <Email>shiinahiiragi@outlook.com</Email>
-  <URL>...</URL>
+  <URL>N/A</URL>
 
-  <Synopsis>...</Synopsis>
+  <Synopsis>Reveal inner states of ChimeraX</Synopsis>
   <Description>
-    ...
+    Recursively traverse ChimeraX session object for literal states.
+    Mainly used for SciBench project of AI Agent for Science.
   </Description>
 
   <Categories>
@@ -26,7 +27,7 @@
     <PythonClassifier>Development Status :: 3 - Alpha</PythonClassifier>
     <PythonClassifier>License :: Freeware</PythonClassifier>
     <ChimeraXClassifier>
-      ChimeraX :: Command :: states :: General :: ...
+      ChimeraX :: Command :: states :: General :: List all states of session
     </ChimeraXClassifier>
   </Classifiers>
 
