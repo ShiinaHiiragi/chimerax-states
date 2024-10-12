@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Reveal inner states of ChimeraX.
+- `states`: reveal inner states of ChimeraX.
+- `destroy`: disable command line interface
 
 ## Installation
 
