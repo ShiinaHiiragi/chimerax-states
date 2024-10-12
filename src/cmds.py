@@ -94,3 +94,11 @@ states_desc = CmdDesc(
     ],
     synopsis="List all states of session"
 )
+
+def destroy(session):
+    import pprint
+    session.logger.info(pprint.pformat(session.ui.main_window.__dict__))
+
+destroy_desc = CmdDesc(
+    synopsis="Disable command line interface"
+)

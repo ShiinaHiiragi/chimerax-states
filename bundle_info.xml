@@ -1,6 +1,6 @@
 <BundleInfo
   name="ChimeraX-SessionStates"
-  version="0.2"
+  version="0.3"
   package="chimerax.session_states"
   minSessionVersion="1"
   maxSessionVersion="1"
@@ -28,6 +28,9 @@
     <PythonClassifier>License :: Freeware</PythonClassifier>
     <ChimeraXClassifier>
       ChimeraX :: Command :: states :: General :: List all states of session
+    </ChimeraXClassifier>
+    <ChimeraXClassifier>
+      ChimeraX :: Command :: destroy :: General :: Disable command line interface
     </ChimeraXClassifier>
   </Classifiers>
 

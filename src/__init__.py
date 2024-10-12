@@ -7,7 +7,10 @@ class _MyAPI(BundleAPI):
 
     @staticmethod
     def register_command(bi, ci, logger):
-        from . import states
-        register(ci.name, states.states_desc, states.states)
+        from . import cmds
+        cmd_name = ci.name
+        cmd_desc = getattr(cmds, f"{cmd_name}_desc")
+        cmd_func = getattr(cmds, cmd_name)
+        register(cmd_name, cmd_desc, cmd_func)
 
 bundle_api = _MyAPI()
