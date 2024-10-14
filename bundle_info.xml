@@ -1,6 +1,6 @@
 <BundleInfo
   name="ChimeraX-SessionStates"
-  version="0.3"
+  version="0.4"
   package="chimerax.session_states"
   minSessionVersion="1"
   maxSessionVersion="1"
@@ -31,6 +31,9 @@
     </ChimeraXClassifier>
     <ChimeraXClassifier>
       ChimeraX :: Command :: destroy :: General :: Disable command line interface
+    </ChimeraXClassifier>
+    <ChimeraXClassifier>
+      ChimeraX :: Command :: clear :: General :: Clear file history
     </ChimeraXClassifier>
   </Classifiers>
 

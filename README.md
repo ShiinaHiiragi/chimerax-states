@@ -4,6 +4,7 @@
 
 - `states <dir_path> <filename>`: reveal inner states of ChimeraX
 - `destroy`: hide and disable command line interface tool
+- `clear`: clear file history in home panel
 
 ## Installation
 

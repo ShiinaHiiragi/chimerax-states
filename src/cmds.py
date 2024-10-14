@@ -109,3 +109,11 @@ def destroy(session):
 destroy_desc = CmdDesc(
     synopsis="Disable command line interface"
 )
+
+def clear(session):
+    from chimerax.core.filehistory import file_history
+    file_history(session).clear_file_history()
+
+clear_desc = CmdDesc(
+    synopsis="Clear file history"
+)
