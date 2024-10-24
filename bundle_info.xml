@@ -1,6 +1,6 @@
 <BundleInfo
   name="ChimeraX-SessionStates"
-  version="0.4"
+  version="0.5"
   package="chimerax.session_states"
   minSessionVersion="1"
   maxSessionVersion="1"
