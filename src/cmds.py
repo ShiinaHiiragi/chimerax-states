@@ -48,7 +48,7 @@ def cruise(obj: Any, depth=0):
         return {
             str(key): cruise(obj.__dict__[key], depth + 1)
             for key in obj.__dict__
-            if key not in ("__objclass__", "undo")
+            if key not in ("__objclass__", "_child_drawings", "_overlays", "undo")
         }
     else:
         return str(obj)
